@@ -7,9 +7,15 @@ module OntologyVersion::Parsing
     after_create :async_parse, :if => :commit_oid?
   end
 
+  def do_not_parse!
+    @deactivate_parsing = true
+  end
+
   def async_parse
-    update_state! :pending
-    async :parse
+    if !@deactivate_parsing
+      update_state! :pending
+      async :parse
+    end
   end
 
   def parse
@@ -31,7 +37,7 @@ module OntologyVersion::Parsing
       File.rename @path, self.xml_path
 
       # Import version
-      self.ontology.import_latest_version self.user
+      self.ontology.import_version self, self.user
       
       update_state! :done
     end

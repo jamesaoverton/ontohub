@@ -71,6 +71,7 @@ gem "rest-client"
 # Background-Jobs
 gem 'sidekiq', '~> 2.17'
 gem 'sidetiq', '~> 0.5'
+gem 'sidekiq-failures'
 gem 'sinatra', require: false, group: [:development, :production]
 
 # Search engine
@@ -104,7 +105,6 @@ group :test do
   # Required for integration tests
   gem "capybara"
   gem "capybara-webkit"
-  gem 'database_cleaner'
   gem "launchy"
   
   # Recording of HTTP Requests
@@ -122,6 +122,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'byebug'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 2.0'
