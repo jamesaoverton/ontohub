@@ -1,7 +1,4 @@
 # Put your production specific settings into this file
 hostname: "staging.ontohub.org"
 
-exception_notifier:
-  enabled: true
-
 display_head_commit: true
