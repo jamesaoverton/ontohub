@@ -1,5 +1,5 @@
 # Put your production specific settings into this file
-hostname: "develop.ontohub.org"
+hostname: "staging.ontohub.org"
 
 exception_notifier:
   enabled: true
