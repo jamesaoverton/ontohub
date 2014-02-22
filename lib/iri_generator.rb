@@ -13,6 +13,8 @@ class IriGenerator
         determine_iri_with_path(repository, path)
       elsif ontology
         determine_iri_with_ontology(repository, ontology)
+      else
+        raise ArgumentError, 'arguments did not comply with signature'
       end
     end
 
