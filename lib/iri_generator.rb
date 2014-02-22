@@ -1,5 +1,9 @@
 class IriGenerator
 
+  # SEP is short for SEPARATOR
+  SEP = '/'
+  CHILD_SEP = '?'
+
   class << self
 
     def iri_for(repository, ontology: nil, path: nil, child_iri: nil)
@@ -20,7 +24,7 @@ class IriGenerator
       elsif has_uri_style?(iri)
         iri
       else
-        "#{ontology.iri}?#{iri}"
+        "#{ontology.iri}#{CHILD_SEP}#{iri}"
       end
     end
 
@@ -34,7 +38,7 @@ class IriGenerator
     end
 
     def determine_iri_with_ontology(repository, ontology)
-      ontohub_iri("#{repository.path}/#{ontology.basepath}")
+      ontohub_iri("#{repository.path}#{SEP}#{ontology.basepath}")
     end
 
     def clean(uncool_iri)
