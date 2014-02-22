@@ -1,7 +1,5 @@
 class IriGenerator
 
-
-
   class << self
 
     def iri_for(repository, ontology: nil, path: nil, child_iri: nil)
@@ -17,9 +15,9 @@ class IriGenerator
     private
     def determine_child_iri(repository, ontology, child_iri)
       iri = clean(child_iri)
-      if iri.start_with?('/')
+      if is_filepath?(iri)
         determine_iri_with_path(repository, iri)
-      elsif iri.include?("://")
+      elsif has_uri_style?(iri)
         iri
       else
         "#{ontology.iri}?#{iri}"
@@ -28,7 +26,7 @@ class IriGenerator
 
     def determine_iri_with_path(repository, path)
       path = clean(path)
-      if path.start_with?('/')
+      if is_filepath?(path)
         iri_portion = reduce(path)
         raise InvalidFileSystemPath unless iri_portion.include?(repository.path)
         ontohub_iri(iri_portion)
@@ -53,6 +51,14 @@ class IriGenerator
 
     def ontohub_iri(path)
       "http://#{Settings.hostname}/#{path}"
+    end
+
+    def is_filepath?(iri)
+      iri.start_with?('/')
+    end
+
+    def has_uri_style?(iri)
+      iri.include?("://")
     end
 
   end
