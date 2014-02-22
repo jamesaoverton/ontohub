@@ -50,7 +50,7 @@ class IriGenerator
       match = path.match(%r{
         .+# match until repository_path is found
         (?<ontology_path>#{repository_path}.+)}x)
-      match['ontology_path']
+      match['ontology_path'].split('.').first
     end
 
     def ontohub_iri(path)
