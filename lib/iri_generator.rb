@@ -31,7 +31,7 @@ class IriGenerator
     def determine_iri_with_path(repository, path)
       path = clean(path)
       if is_filepath?(path)
-        iri_portion = reduce(path)
+        iri_portion = reduce(repository, path)
         raise InvalidFileSystemPath unless iri_portion.include?(repository.path)
         ontohub_iri(iri_portion)
       end
