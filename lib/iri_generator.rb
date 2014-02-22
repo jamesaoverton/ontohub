@@ -67,6 +67,8 @@ class IriGenerator
       iri.include?("://")
     end
 
+    public :ontohub_iri
+
   end
 
 end
