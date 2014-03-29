@@ -2,7 +2,13 @@ class ProjectsController < InheritedResources::Base
 
   belongs_to :ontology, optional: true
   before_filter :check_read_permissions
-  load_and_authorize_resource
+
+  if parent
+    load_resource :ontology
+    load_and_authorize_resource through: [:ontology]
+  else
+    load_and_authorize_resource
+  end
 
   def create
     create! do |success, failure|

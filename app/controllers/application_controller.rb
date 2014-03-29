@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-
+  check_authorization unless: :devise_controller? # DELETEME
   protect_from_forgery
   ensure_security_headers
   
   include Pagination
-  include PathHelpers
+  include ::PathHelpers
   include ApplicationHelper
   
   # CanCan Authorization

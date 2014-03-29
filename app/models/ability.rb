@@ -28,8 +28,9 @@ class Ability
       end
 
       # Ontology
-      can :manage, Ontology do |subject|
-        subject.permission?(:editor, user)
+      can :read, Ontology
+      can :write, Ontology do |subject|
+        subject.repository.permission?(:editor, user)
       end
       
       # Logics
@@ -101,6 +102,10 @@ class Ability
         subject.user == user || subject.commentable.permission?(:owner, user)
       end
       
+      can :read, Link do |subject|
+        can?(:show, subject.source.repository) && can?(:show, subject.target.repository)
+      end
+
       can [:create, :destroy], Metadatum do |subject|
         # TODO tests written?
         subject.user == user || subject.metadatable.permission?(:editor, user)
@@ -112,9 +117,18 @@ class Ability
 
       can :read, FormalityLevel
       can :read, Category
+
+      can :manage, Key do |subject|
+        subject.user == user
+      end
     else
       can :show, Repository do |subject|
         !subject.is_private
+      end
+      can :read, Ontology
+
+      can :read, Link do |subject|
+        can?(:show, subject.source.repository) && can?(:show, subject.target.repository)
       end
 
       can :read, Project

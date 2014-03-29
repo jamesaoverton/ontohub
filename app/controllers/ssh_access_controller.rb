@@ -1,4 +1,5 @@
 class SshAccessController < InheritedResources::Base
+  skip_authorization_check
 
   belongs_to :repository, finder: :find_by_path!
 

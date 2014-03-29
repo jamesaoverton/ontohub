@@ -2,7 +2,9 @@
 # Autocompletion for models
 # 
 class AutocompleteController < ActionController::Base
-  
+
+  skip_authorization_check
+
   MIN_LENGTH = 3
   
   def index

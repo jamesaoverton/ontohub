@@ -2,7 +2,8 @@
 # The home page that displays all latest news
 # 
 class HomeController < ApplicationController
-  
+  skip_authorization_check
+
   def show
     @comments = Comment.latest.limit(10).all
     @versions = OntologyVersion.latest.where(state: 'done').limit(10).all

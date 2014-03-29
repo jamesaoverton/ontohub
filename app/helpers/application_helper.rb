@@ -33,7 +33,7 @@ module ApplicationHelper
 
     if params[:logic_id]
       @resource_chain = []
-      return @resource_chain      
+      return @resource_chain
     end
 
     if !params[:repository_id] && !(params[:controller] == 'repositories' && params[:id])

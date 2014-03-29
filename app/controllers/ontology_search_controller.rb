@@ -1,5 +1,6 @@
 # Ontology search endpoints for the GWT search code.
 class OntologySearchController < ApplicationController
+  skip_authorization_check
   respond_to :json
 
   def keywords

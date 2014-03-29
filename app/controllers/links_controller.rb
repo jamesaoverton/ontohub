@@ -7,8 +7,8 @@ class LinksController < InheritedResources::Base
   has_pagination
   has_scope :search
   belongs_to :ontology, :optional => true
-  load_and_authorize_resource :except => [:index, :show]
-  before_filter :check_read_permissions
+  skip_authorization_check only: [:index, :show]
+  load_and_authorize_resource except: [:index, :show]
 
   def index
     super do |format|
@@ -53,16 +53,5 @@ class LinksController < InheritedResources::Base
   
   def build_resource
     @link ||= Link.new params[:link]
-  end
-  
-  def check_read_permissions
-    unless params[:action] == 'index'
-      if resource.source
-        authorize! :show, resource.source.repository
-      end
-      if resource.target
-        authorize! :show, resource.target.repository
-      end
-    end
   end
 end
