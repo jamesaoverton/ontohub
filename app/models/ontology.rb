@@ -32,6 +32,9 @@ class Ontology < ActiveRecord::Base
   belongs_to :logic, counter_cache: true
   belongs_to :ontology_type
   belongs_to :repository
+  belongs_to :license_model
+  belongs_to :formality_level
+  belongs_to :task
 
   has_many :alternative_iris, dependent: :destroy
   has_many :source_links, class_name: 'Link', foreign_key: 'source_id', dependent: :destroy
@@ -48,7 +51,9 @@ class Ontology < ActiveRecord::Base
                   :present,
                   :alternative_iris,
                   :ontology_type_id,
-                  :formality_level_ids
+                  :license_model_id,
+                  :formality_level_id,
+                  :task_id
 
   validates_uniqueness_of :iri, :if => :iri_changed?
   validates_format_of :iri, :with => URI::regexp(Settings.allowed_iri_schemes)
@@ -149,11 +154,15 @@ class Ontology < ActiveRecord::Base
     import_links.map(&:source)
   end
 
-  def destroy_with_parent
+  def destroy_with_parent(user)
     if parent
-      parent.destroy
+      repository.delete_file(parent.path, user, "Delete ontology #{parent}") do
+        parent.destroy
+      end
     else
-      destroy
+      repository.delete_file(path, user, "Delete ontology #{self}") do
+        destroy
+      end
     end
   end
 
@@ -180,7 +189,7 @@ class Ontology < ActiveRecord::Base
   end
 
   def import_links
-    Link.where(target_id: self.id, kind: "import")
+    Link.where(source_id: self.id, kind: "import")
   end
 
 end
