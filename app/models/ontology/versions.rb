@@ -35,7 +35,7 @@ module Ontology::Versions
     end
 
     def active_version
-      return self.ontology_version if self.state == 'done'
+      return current_version if self.state == 'done'
       OntologyVersion.
         where(ontology_id: self, state: 'done').
         order('number DESC').
@@ -43,8 +43,8 @@ module Ontology::Versions
     end
 
     def non_current_active_version?(user=nil)
-      real_process_state = active_version != self.ontology_version
-      if user && (user.admin || ontology_version.try(:user) == user)
+      real_process_state = active_version != current_version
+      if user && (user.admin || current_version.try(:user) == user)
         real_process_state
       else
         false
