@@ -42,6 +42,11 @@ module Ontology::Versions
         first
     end
 
+    # Answer the question if there is an active version
+    # which is actually not the most current one.
+    # However the question is only answered
+    # truthfully if the user is either an admin
+    # or the creator of the particular current version.
     def non_current_active_version?(user=nil)
       real_process_state = active_version != current_version
       if user && (user.admin || current_version.try(:user) == user)
@@ -54,11 +59,7 @@ module Ontology::Versions
     def self.with_active_version
       state = "done"
       includes(:versions).
-      where([
-        "ontologies.id IN " +
-        "(SELECT ontology_id FROM ontology_versions WHERE state = ?)",
-        state
-      ])
+      where(id: OntologyVersion.where(state: state).select(:ontology_id))
     end
 
     def self.in_process(user=nil)
