@@ -9,6 +9,7 @@
 name: "MyOntohub"
 
 # Hostname of the installation
+scheme: http
 hostname: example.com
 
 # Optional asset host for delivery of static files (css, images, javascripts)
