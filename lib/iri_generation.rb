@@ -54,15 +54,19 @@ module IRIGeneration
 
     private
     def pathify(arg)
-      arg ? "#{SEP}#{arg}" : ''
+      "#{SEP}#{stringify(arg)}" if arg
     end
 
     def childify(arg)
-      arg ? "#{CHILD_SEP}#{arg}" : ''
+      "#{CHILD_SEP}#{stringify(arg)}" if arg
     end
 
     def partify(arg)
-      arg ? "#{PART_SEP}#{arg}" : ''
+      "#{PART_SEP}#{stringify(arg)}" if arg
+    end
+
+    def stringify(arg)
+      arg.respond_to?(:iri_component) ? arg.iri_component : arg.to_s
     end
   end
 
