@@ -143,6 +143,10 @@ class Ontology < ActiveRecord::Base
     end
   end
 
+  def iri_component
+    basepath
+  end
+
 
   def self.find_by_file(file)
     s_find_by_file(file).first

@@ -34,4 +34,8 @@ class Repository < ActiveRecord::Base
     path
   end
 
+  def iri_component
+    path
+  end
+
 end

@@ -85,4 +85,8 @@ class Link < ActiveRecord::Base
   def expand_hierarchy
     ontology.expand_hierarchy.merge(mapping: self)
   end
+
+  def iri_component
+    name
+  end
 end

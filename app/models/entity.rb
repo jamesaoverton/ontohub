@@ -29,4 +29,8 @@ class Entity < ActiveRecord::Base
     ontology.expand_hierarchy.merge(symbol: self)
   end
 
+  def iri_component
+    name
+  end
+
 end
