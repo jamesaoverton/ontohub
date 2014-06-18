@@ -81,4 +81,8 @@ class Link < ActiveRecord::Base
       "#{entity_mappings.first}"
     end
   end
+
+  def expand_hierarchy
+    ontology.expand_hierarchy.merge(mapping: self)
+  end
 end

@@ -25,4 +25,8 @@ class Entity < ActiveRecord::Base
     self.display_name || self.name
   end
 
+  def expand_hierarchy
+    ontology.expand_hierarchy.merge(symbol: self)
+  end
+
 end

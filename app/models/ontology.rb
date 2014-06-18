@@ -135,6 +135,14 @@ class Ontology < ActiveRecord::Base
     name? ? iri : nil
   end
 
+  def expand_hierarchy
+    if parent
+      parent.expand_hierarchy.merge(child_ontology: self)
+    else
+      {ontology: self, repository: self.repository}
+    end
+  end
+
 
   def self.find_by_file(file)
     s_find_by_file(file).first
@@ -232,5 +240,6 @@ class Ontology < ActiveRecord::Base
   def import_links_from_other_repositories
     import_links.select { |l| l.target.repository != self.repository }
   end
+
 
 end
