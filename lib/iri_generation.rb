@@ -8,7 +8,7 @@ module IRIGeneration
   PART_SEP = '#'
 
   class Wrapper
-    attr_accessor :host, :port, :scheme, :subject
+    attr_accessor :host, :port, :scheme, :subject, :append
 
     def initialize(host: nil, port: nil, scheme: nil)
       self.host = host || Settings.hostname
@@ -36,15 +36,24 @@ module IRIGeneration
       self.subject = mapping
     end
 
+    def append_info!(info_hash)
+      self.append ||= {}
+      append.merge!(info_hash)
+    end
+
     def realize
       h = OpenStruct.new(subject.expand_hierarchy)
+      append = OpenStruct.new(self.append)
       [
         base,
         pathify(h.repository),
         pathify(h.ontology),
+        pathify(append.path),
         childify(h.child_ontology),
         childify(h.mapping),
+        childify(append.child),
         partify(h.symbol),
+        partify(append.part),
       ].join('')
     end
 
@@ -76,9 +85,10 @@ module IRIGeneration
     wrapper.realize
   end
 
-  def iri_for(subject)
+  def iri_for(subject, append: {})
     wrapper = Wrapper.new
     wrapper.subject = subject
+    wrapper.append_info!(append)
     wrapper.to_s
   end
 
