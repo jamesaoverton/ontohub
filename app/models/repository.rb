@@ -34,6 +34,10 @@ class Repository < ActiveRecord::Base
     path
   end
 
+  def expand_hierarchy
+    {repository: self}
+  end
+
   def iri_component
     path
   end

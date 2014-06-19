@@ -139,7 +139,7 @@ class Ontology < ActiveRecord::Base
     if parent
       parent.expand_hierarchy.merge(child_ontology: self)
     else
-      {ontology: self, repository: self.repository}
+      repository.expand_hierarchy.merge(ontology: self)
     end
   end
 
