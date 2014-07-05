@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.18'
+gem 'rails', '~> 3.2.19'
 gem 'rack-protection'
 gem 'secure_headers'
 
@@ -107,7 +107,7 @@ group :test do
   gem "capybara"
   gem "capybara-webkit"
   gem "launchy"
-  
+
   # Recording of HTTP Requests
   gem "vcr"
   gem "webmock", '~> 1.9.0'
@@ -124,6 +124,7 @@ group :development do
   gem 'sunspot_solr', :git => 'git://github.com/digineo/sunspot.git'
   gem "rails-erd"
   gem 'quiet_assets'
+  gem 'invoker', '~> 1.2.0'
 end
 
 group :development, :test do
