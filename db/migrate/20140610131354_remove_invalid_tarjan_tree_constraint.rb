@@ -1,7 +1,11 @@
 class RemoveInvalidTarjanTreeConstraint < ActiveRecord::Migration
-  def change
+  def up
     change_table :entity_groups do |t|
       t.remove_index [:ontology_id, :name]
     end
+  end
+
+  def down
+
   end
 end
