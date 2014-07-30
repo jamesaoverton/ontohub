@@ -3,19 +3,19 @@
 #
 # Environment specific settings can be overridden in:
 # /config/settings/<environment>.yml
-# 
+#
 
 # Name of the installation
-name: "MyOntohub"
+name: 'Ontohub'
 
 # Hostname of the installation
-hostname: example.com
+hostname: ontohub.org
 
 # Optional asset host for delivery of static files (css, images, javascripts)
 # asset_host: assets.example.com
 
 # Sender address for outgoing mail
-email: noreply@example.com
+email: noreply@ontohub.org
 
 # Mail delivery
 # http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
@@ -26,22 +26,27 @@ action_mailer:
 # the website without confirming his account.
 allow_unconfirmed_access_for_days: 3
 
+
 # Timeout for ontology parsing jobs in hours
 ontology_parse_timeout: 6
 
 # Footer links and texts
 footer:
-  - text: Foo Institute
+  - text: © 2012-2014 Universität Bremen
+  - text: GNU AGPL 3.0
+    href: http://www.gnu.org/licenses/agpl-3.0.html
+  - text: GitHub
+    href: https://github.com/ontohub/ontohub
   - text: About
-    href: http://about.example.com
+    href: http://about.ontohub.org
 
 # Delivery of exceptions, disabled by default
 exception_notifier:
   enabled: false
   email_prefix: "[ontohub exception]"
-  sender_address: "exceptions@example.com"
+  sender_address: "exceptions@ontohub.org"
   exception_recipients:
-    - exception-recipient@example.com
+    - ontohub-exceptions-l@ovgu.de
 
 git:
   verify_url: http://localhost/
@@ -64,7 +69,7 @@ format_selection: false
 
 # Possible values for metadata, adapted from OMV
 formality_levels:
-  - name: vocabulary 
+  - name: vocabulary
     description: "list of words"
   - name: terminology
     description: "list of concepts with definitions"
