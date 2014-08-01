@@ -2,7 +2,7 @@
 
 hostname: "ontohub.org"
 exception_notifier:
-  enabled: true
+  enabled: false
 
 git:
   user: 'git'
