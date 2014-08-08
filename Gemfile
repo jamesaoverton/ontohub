@@ -86,7 +86,7 @@ gem 'ruby-graphviz', "~> 1.0.8"
 gem "faker", "~> 1.2"
 
 # Git
-gem 'rugged'
+gem 'rugged', '0.21.0'
 gem 'diffy'
 gem 'codemirror-rails', github: 'llwt/codemirror-rails'
 gem 'js-routes'
@@ -112,6 +112,7 @@ group :test do
   gem "vcr"
   gem "webmock", '~> 1.9.0'
 
+  gem 'cucumber-rails', '~> 1.4', require: false
   # Code Coverage Analysis
   gem 'coveralls', require: false
 

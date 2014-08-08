@@ -40,8 +40,15 @@ def version_for_file(repository, path)
   version = repository.save_file path, basename, "#{basename} added", dummy_user
 end
 
-# includes the convience-method `define_ontology('name.extension')`
+# includes the convenience-method `define_ontology('name')`
 include OntologyUnited::Convenience
+
+def parse_this(user, ontology, xml_path, code_path)
+  evaluator = Hets::Evaluator.new(user, ontology,
+                                  path: xml_path,
+                                  code_path: code_path)
+  evaluator.import
+end
 
 def stub_ontology_file_extensions
   Ontology.stubs(:file_extensions_distributed).returns(
@@ -76,6 +83,10 @@ RSpec.configure do |config|
     unstub_ontology_file_extensions
     DatabaseCleaner.clean
   end
+
+  config.expose_current_running_example_as :example
+
+  config.infer_spec_type_from_file_location!
 
   config.infer_base_class_for_anonymous_controllers = true
 
