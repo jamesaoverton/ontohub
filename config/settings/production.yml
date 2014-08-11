@@ -2,3 +2,7 @@
 hostname: "staging.ontohub.org"
 
 display_head_commit: true
+
+git:
+  user: git
+  group: ontohub
