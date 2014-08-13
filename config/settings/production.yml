@@ -5,4 +5,4 @@ display_head_commit: true
 
 git:
   user: git
-  group: git
+  group: ontohub
