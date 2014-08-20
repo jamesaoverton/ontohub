@@ -8,7 +8,7 @@ describe Hets, :needs_hets do
 
   context 'Output directory parameter' do
     before do
-      xml_paths = Hets.parse Rails.root.join('test/fixtures/ontologies/owl/pizza.owl'), [], '/tmp'
+      xml_paths = Hets.parse Rails.root.join('test/fixtures/ontologies/owl/pizza.owl'), '/tmp'
       @xml_path = xml_paths.last
     end
 
@@ -20,7 +20,7 @@ describe Hets, :needs_hets do
   %w(owl/pizza.owl owl/generations.owl clif/cat.clif).each do |path|
     context path do
       before do
-        xml_paths = Hets.parse Rails.root.join("test/fixtures/ontologies/#{path}"), [], '/tmp'
+        xml_paths = Hets.parse Rails.root.join("test/fixtures/ontologies/#{path}"), '/tmp'
         @xml_path = xml_paths.last
         @pp_path = xml_paths.first
       end
@@ -42,10 +42,11 @@ describe Hets, :needs_hets do
 
   context 'with url-catalog' do
     before do
+      hets_options = Hets::Options.new(url_catalog:
+        ["http://colore.oor.net=http://develop.ontohub.org/colore/ontologies"])
       xml_paths = Hets.parse \
         Rails.root.join("test/fixtures/ontologies/clif/monoid.clif"),
-        ["http://colore.oor.net=http://develop.ontohub.org/colore/ontologies"],
-        '/tmp'
+        '/tmp', hets_options
       @xml_path = xml_paths.last
       @pp_path = xml_paths.first
     end
