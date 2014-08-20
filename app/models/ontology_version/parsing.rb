@@ -53,6 +53,7 @@ module OntologyVersion::Parsing
   # generate XML by passing the raw ontology to Hets
   def generate_xml(structure_only: false)
     hets_options = Hets::Options.new(
+      access_token: ontology.repository.access_token_get_or_generate,
       structure_only: structure_only,
       url_catalog: ontology.repository.url_maps)
     paths = Hets.parse(raw_path!, xml_dir, hets_options)

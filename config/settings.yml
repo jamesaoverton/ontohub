@@ -51,6 +51,9 @@ git:
   verify_url: http://localhost/
   default_branch: 'master'
 
+access_token:
+  expiration_minutes: 360
+
 allowed_iri_schemes:
   - http
   - https
