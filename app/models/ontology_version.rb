@@ -20,9 +20,9 @@ class OntologyVersion < ActiveRecord::Base
     :with => URI::regexp(Settings.allowed_iri_schemes), :if => :source_url?
   validates_presence_of :basepath
 
-  scope :latest, order('id DESC')
-  scope :done, state('done')
-  scope :failed, state('failed')
+  scope :latest, ->() { order('id DESC') }
+  scope :done, ->() { state('done') }
+  scope :failed, ->() { state('failed') }
 
   delegate :repository, to: :ontology
 

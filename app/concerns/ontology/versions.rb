@@ -16,7 +16,10 @@ module Ontology::Versions
         def newest
           reorder('number DESC')
         end
+
       end
+
+    scope :versions, ->() { reorder('number ASC') }
 
     attr_accessible :versions_attributes
     accepts_nested_attributes_for :versions

@@ -40,7 +40,7 @@ class Logic < ActiveRecord::Base
   validates_uniqueness_of :iri, if: :iri_changed?
   validates_format_of :iri, with: URI::regexp(Settings.allowed_iri_schemes)
 
-  default_scope order('ontologies_count desc')
+  default_scope { order('ontologies_count desc') }
 
   scope :autocomplete_search, ->(query) {
     where("name ILIKE ?", "%" << query << "%")

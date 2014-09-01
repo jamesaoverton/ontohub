@@ -17,7 +17,7 @@ module Repository::Importing
   included do
     include StateUpdater
 
-    scope :with_source, where("source_type IS NOT null")
+    scope :with_source, ->() { where("source_type IS NOT null") }
 
     # Ready for pulling
     scope :outdated, ->{

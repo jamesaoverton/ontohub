@@ -43,9 +43,9 @@ class Permission < ActiveRecord::Base
   }
 
   scope :role, ->(role) { where :role => role }
-  scope :owner, role(:owner)
-  scope :editor, role(:editor)
-  scope :reader, role(:reader)
+  scope :owner, ->() { role(:owner) }
+  scope :editor, ->() { role(:editor) }
+  scope :reader, ->() { role(:reader) }
 
   # reduce the comparison problem to
   # a number comparison problem by

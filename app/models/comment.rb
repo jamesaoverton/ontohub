@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :text
 
-  scope :latest, order('id DESC')
+  scope :latest, ->() { order('id DESC') }
 
   validates :text, :length => { :minimum => 10 }
 

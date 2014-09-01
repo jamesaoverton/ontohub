@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   strip_attributes :only => [:name, :email]
 
-  scope :admin, where(:admin => true)
+  scope :admin, ->() { where(:admin => true) }
 
   scope :email_search, ->(query) { where "email ILIKE ?", "%" << query << "%" }
 

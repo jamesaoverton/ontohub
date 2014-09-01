@@ -11,8 +11,8 @@ class TeamUser < ActiveRecord::Base
   before_update  :check_remaining_admins_on_update
   before_destroy :check_remaining_admins_on_destroy
 
-  scope :admin, where(:admin => true)
-  scope :non_admin, where(:admin => false)
+  scope :admin, ->() { where(:admin => true) }
+  scope :non_admin, ->() { where(:admin => false) }
 
   delegate :team_users, :to => :team
 

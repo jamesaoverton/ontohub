@@ -23,7 +23,7 @@ class Repository < ActiveRecord::Base
 
   after_save :clear_readers
 
-  scope :latest, order('updated_at DESC')
+  scope :latest, ->() { order('updated_at DESC') }
 
   def to_s
     name
