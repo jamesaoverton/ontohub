@@ -78,7 +78,8 @@ gem 'sidekiq-failures', '~> 0.4.3'
 gem 'sinatra', '~> 1.4.5', require: false, group: [:development, :production]
 
 # Search engine
-gem 'sunspot_rails', :git => 'git://github.com/digineo/sunspot.git'
+# gem 'sunspot_rails', :git => 'git://github.com/digineo/sunspot.git'
+gem 'sunspot_rails', '~> 2.1.1'
 gem 'progress_bar', '~> 1.0.2'
 
 # Graph visualization
