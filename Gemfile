@@ -22,6 +22,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 3.0.0'
   gem 'coffee-rails',   '~> 4.0.0'
   gem 'compass',        '~> 0.12.1'
+  gem 'compass-rails'
   gem 'font_awesome', '~> 3.101.0'
   gem 'jquery-rails', '~> 3.1.1'
   gem 'jquery-ui-rails', '~> 5.0.0'
@@ -58,7 +59,8 @@ gem 'nokogiri', '~> 1.6.3.1'
 gem 'devise', '~> 3.2.4'
 
 # Authorization
-gem 'cancan', '~> 1.6.7'
+# gem 'cancan', '~> 1.6.7'
+gem 'cancancan'
 
 # Pagination
 gem 'kaminari', '~> 0.16.1'
