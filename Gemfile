@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.19'
+gem 'rails', '~> 4.1.5'
 gem 'rack-protection', '~> 1.5.3'
 gem 'secure_headers', '~> 1.2.0'
 
@@ -17,9 +17,9 @@ gem 'rdf-n3', '~> 1.1.1'
 # in production environments by default.
 group :assets do
   gem 'jstree-rails', :git => 'git://github.com/tristanm/jstree-rails.git'
-  gem 'sass-rails',     '~> 3.2.3'
+  gem 'sass-rails',     '~> 4.0.0'
   gem 'bootstrap-sass', '~> 3.0.0'
-  gem 'coffee-rails',   '~> 3.2.1'
+  gem 'coffee-rails',   '~> 4.0.0'
   gem 'compass',        '~> 0.12.1'
   gem 'font_awesome', '~> 3.101.0'
   gem 'jquery-rails', '~> 3.1.1'
@@ -41,7 +41,7 @@ gem 'haml-rails', '~> 0.4'
 gem 'rails_config', '~> 0.3.0'
 
 # Fancy Forms
-gem 'simple_form', '~> 2.1.1'
+gem 'simple_form', '~> 3.0.0'
 
 # Inherited Resources
 gem 'inherited_resources', '~> 1.4.0'
