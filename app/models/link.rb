@@ -21,12 +21,13 @@ class Link < ActiveRecord::Base
 
   has_many :versions,
       :dependent  => :destroy,
-      :order      => :version_number,
       :class_name => 'LinkVersion' do
         def current
           reorder('version_number DESC').first
         end
       end
+
+  scope :versions, ->() { reorder('version_number ASC') }
 
   attr_accessible :iri, :source, :target, :kind, :theorem, :proven, :local,
                   :inclusion, :logic_mapping, :parent, :ontology_id, :source_id,

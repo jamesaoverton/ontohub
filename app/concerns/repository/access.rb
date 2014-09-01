@@ -14,8 +14,14 @@ module Repository::Access
   DEFAULT_OPTION = OPTIONS[0]
 
   included do
-    scope :pub, where("access NOT LIKE 'private%'")
-    scope :accessible_by, ->(user) do
+    scope :pub, ->() { where("access NOT LIKE 'private%'") }
+
+    validates_with RemoteAccessValidator
+    validates :access,
+      presence: true,
+      inclusion: { in: Repository::Access::OPTIONS }
+
+    def self.accessible_by(user)
       if user
         where("access NOT LIKE 'private%'
           OR id IN (SELECT item_id FROM permissions WHERE item_type = 'Repository' AND subject_type = 'User' AND subject_id = ?)
@@ -26,10 +32,6 @@ module Repository::Access
       end
     end
 
-    validates_with RemoteAccessValidator
-    validates :access,
-      presence: true,
-      inclusion: { in: Repository::Access::OPTIONS }
   end
 
   def is_private
