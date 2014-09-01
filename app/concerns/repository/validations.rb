@@ -1,8 +1,8 @@
 module Repository::Validations
   extend ActiveSupport::Concern
 
-  VALID_NAME_REGEX = /^[A-Za-z0-9_\.\-\ ]{3,32}$/
-  VALID_PATH_REGEX = /^[a-z0-9_\.\-]{3,32}$/
+  VALID_NAME_REGEX = /\A[A-Za-z0-9_\.\-\ ]{3,32}\Z/
+  VALID_PATH_REGEX = /\A[a-z0-9_\.\-]{3,32}\Z/
 
   included do
     before_validation :set_path
