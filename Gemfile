@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'protected_attributes'
 gem 'rails', '~> 4.1.5'
 gem 'rack-protection', '~> 1.5.3'
 gem 'secure_headers', '~> 1.2.0'
