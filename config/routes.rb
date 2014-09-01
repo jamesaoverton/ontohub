@@ -123,13 +123,13 @@ Ontohub::Application.routes.draw do
     get ':ref/files(/*path)',
       controller:  :files,
       action:      :show,
-      as:          :ref,
+      as:          :file_ref,
       constraints: FilesRouterConstraint.new
 
     # action: history, diff, entries_info, files
     get ':ref/:action(/:path)',
       controller:  :files,
-      as:          :ref,
+      as:          :hist_ref,
       constraints: { path: /.*/ }
 
     # get ':ref/files(/:path)',
@@ -142,13 +142,13 @@ Ontohub::Application.routes.draw do
   post ':repository_id/:path',
     controller:  :files,
     action:      :update,
-    as:          :repository_tree,
+    as:          :repository_tree_push,
     constraints: { path: /.*/ }
 
   get ':repository_id(/*path)',
     controller: :files,
     action:     :show,
-    as:         :repository_tree,
+    as:         :repository_tree_read,
     constraints: FilesRouterConstraint.new
 
   get '*path',
