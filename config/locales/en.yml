@@ -32,6 +32,7 @@ en:
   LogicMapping: Logic-Mapping
   repository:
     delete: Delete Repository
+    delete_error: "Can't delete repository: It contains an ontology that is imported by another repository."
     errors: Errors
     permissions: Permissions
     edit: Edit repository
