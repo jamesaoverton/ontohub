@@ -6,6 +6,7 @@ class RepositoriesController < InheritedResources::Base
 
   def create
     resource.user = current_user
+    resource.remote_type = params[:remote_type]
     super
   end
 
