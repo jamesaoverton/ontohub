@@ -65,7 +65,7 @@ class Ontology < ActiveRecord::Base
     allow_blank: true,
     format: { with: URI::regexp(Settings.allowed_iri_schemes) }
 
-  validates_presence_of :basepath
+# validates_presence_of :basepath
 
   delegate :permission?, to: :repository
 
