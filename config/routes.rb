@@ -60,9 +60,7 @@ Ontohub::Application.routes.draw do
 
   resources :ontologies, only: [:index] do
     collection do
-      get 'keywords' => 'ontology_search#keywords'
       get 'search' => 'ontology_search#search'
-      get 'filters_map' => 'ontology_search#filters_map'
     end
   end
 
@@ -88,9 +86,7 @@ Ontohub::Application.routes.draw do
     resources :ontologies, only: [:index, :show, :edit, :update, :destroy] do
       collection do
         post 'retry_failed' => 'ontologies#retry_failed'
-        get 'keywords' => 'ontology_search#keywords'
         get 'search' => 'ontology_search#search'
-        get 'filters_map' => 'ontology_search#filters_map'
       end
       member do
         post 'retry_failed' => 'ontologies#retry_failed'
