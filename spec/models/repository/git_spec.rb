@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Repository do
 
-  let(:repository) { create :repository_with_remote }
+  let(:repository) { create :repository_with_remote, remote_type: 'mirror' }
 
   context 'when ontohub clones a remote repository' do
     it 'should create a bulk job on a queue' do
