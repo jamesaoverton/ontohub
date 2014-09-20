@@ -58,7 +58,8 @@ module RenameRefactor
         "gsub(\"#{old_word}\",\"#{new_word}\")",
         "gsub(\"#{pluralize(old_word)}\",\"#{pluralize(new_word)}\")",
         "gsub(\"#{camelize(old_word)}\",\"#{camelize(new_word)}\")",
-        "gsub(\"#{camelize(pluralize(old_word))}\",\"#{camelize(pluralize(new_word))}\")",
+        "gsub(\"#{camelize(pluralize(old_word))}\","\
+          "\"#{camelize(pluralize(new_word))}\")",
       ]
       tmp_file = "> /tmp/awk_tmp_file && mv /tmp/awk_tmp_file #{file}"
       command = "#{awk} '{#{commands.join(';')};print}' #{file} #{tmp_file}"
@@ -83,7 +84,7 @@ module RenameRefactor
     def affected_files
       filetype = AFFECTED_FILETYPES.first
       loc = DIRECTORIES.join(' ')
-      out = %x[find #{loc} -iname "*.#{filetype}" #{other_filetype_options}]
+      out = `find #{loc} -iname "*.#{filetype}" #{other_filetype_options}`
       out.lines.map { |l| l.delete("\n") }
     end
 
@@ -248,7 +249,8 @@ module RenameRefactor
           join(', ')
 
         if [new_index_name, new_table_name, *new_columns].any?
-          # At this point, the index is already on the new table, but with the old name
+          # At this point, the index is already on the new table,
+          # but with the old name
           push(:up, "remove_index '#{table_name}', name: '#{old_index_name}'")
           push(:down, "add_index '#{old_table_name}', [#{old_column_names}], "\
             "unique: #{unique}, name: '#{old_index_name}'")
